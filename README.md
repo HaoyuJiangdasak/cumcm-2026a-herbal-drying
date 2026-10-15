@@ -41,15 +41,19 @@ python -m pip install -r requirements.txt
 
 代码使用 workspace 作为工作目录，并大量依赖相对路径。输入数据和已生成的结果均已随项目保存。
 
-当前归档缺少两个运行辅助文件：
+当前归档缺少若干运行与参数来源文件：
 
 - workspace/code/compute_checkpoint.py
 - workspace/_utils/run_compute.py
+- workspace/PROBLEM_FACTS.json
+- workspace/DATA_FACTS.json
+- workspace/DATA_PROFILE.json
 
-因此，当前仓库适合阅读论文、检查代码、查看图表和复核已落盘结果；从干净环境直接运行完整流水线前，需要补回上述两个文件。已有结果不会被删除或覆盖。
+其中 params.py 导入时会读取 PROBLEM_FACTS.json，gen_params.py 还会读取另外两个数据事实文件。已实际验证，当前归档从干净环境运行 python code/data_check.py 会在读取 PROBLEM_FACTS.json 时停止。因此，当前仓库适合阅读论文、检查代码、查看图表和复核已落盘结果；要完整重跑或重新生成参数，需补回上述文件。已有结果不会被删除或覆盖。
 
 论文源码入口为 workspace/paper/main.tex，完整结果说明见 workspace/RESULTS.md。
 
 ## 文件组织原则
 
 项目原有目录和结果文件保持不变，只补充仓库级说明、依赖和忽略规则，便于后续协作和版本管理。原始说明保存在 README.original.txt。
+
