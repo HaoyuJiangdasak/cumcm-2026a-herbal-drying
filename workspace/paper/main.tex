@@ -1,0 +1,142 @@
+% 国赛 (CUMCM) 2026 兼容模板
+% 基于社区维护的 latexstudio/CUMCMThesis，并以全国组委会 2026 格式规范为准。
+% cumcmthesis 不是组委会指定的唯一 TeX 模板。
+% 电子版提交使用 withoutpreface 去掉封面编号页，bwprint 黑白打印
+\documentclass[withoutpreface,bwprint]{cumcmthesis}
+
+% === 额外宏包（cumcmthesis 已内置 amsmath/graphicx/booktabs/listings/hyperref/tabularx/longtable 等）===
+% mdframed / placeins 在本机 TeX 树中不存在：mdframed 全文未使用，placeins 仅影响分节浮动
+% 屏障。表格一律用 [H] 固定，图一律用 [htbp] 交给下方 MH-FLOAT-TUNE 参数排布；无 \FloatBarrier
+% 可用，故图的落位已逐张核对，未越出所属章节。needspace 同样缺失，但编译前
+% 处理脚本会向「模型假设」注入 \needspace，已在 cls 中按原包机制给出最小实现（见 cls 的宏包退化段）。
+\usepackage{algorithm2e}
+
+% === 参考文献引用（数字型，配合 gbt7714-numerical.bst）===
+% 注意：不要加载 cite 宏包 — 它与 natbib 冲突，会导致编译错误。（此处刻意不写出该宏包的
+%    加载命令原文：合规检查以字面串搜索 main.tex，注释里出现原文会被判成真的加载了。）
+% 必须显式加载 natbib：gbt7714-numerical.bst 产出的是 natbib 风格条目
+%    （\bibitem[作者(年)]{key}），不加载 natbib 时标准 \cite 会把「作者-年」当引用标记
+%    上标出来（而非数字 [1]）。numbers 模式让 \cite 产出数字，cls 的 \upcite 再上标它。
+%    正文引用统一用 \upcite{key} 得数字上标 $^{[1]}$。
+\usepackage[numbers,sort&compress]{natbib}
+
+% === TikZ（cumcmthesis 已加载 tikz，这里只加额外库）===
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,calc}
+
+% === 代码高亮设置 ===
+\lstset{
+    language=Python,
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+}
+% 附录代码的注释与输出串里有 ∈ 和 ℃，等宽字体（cls 中设为 Consolas）没有这两个字形。
+% 不能用 listings 的 literate 替换：实测它只对码位不超过 255 的字符生效——同一份 literate 里
+% y 和 °(U+00B0) 都能命中，∈(U+2208) 命中不了。故改走 xeCJK 字符类把这两个码位交给中文
+% 字体出字（代码块内的中文注释本来就走这条路）。⇒ ⇔ ⋯ 在 SimSun/FangSong 里同样没有字形，
+% 已在 code/ 侧改成等价写法，不在此处理。
+\xeCJKDeclareCharClass{CJK}{"2208, "2103}
+
+% === 摘要后排版修复 ===
+% 注意：不再重定义 \@cite —— 引用交给 natbib（上面已 numbers 模式加载），
+%    \upcite 会正确产出数字上标；旧的 \@cite hack 在 natbib 下无效且会干扰，已移除。
+\makeatletter
+% === 修复摘要后排版（cls 的 abstract 结束时有 \newpage\null，可能产生空白页）===
+% 方案：abstract 结束时只换页，不加 \null；正文不生成目录。
+\renewenvironment{abstract}{%
+  \if@twocolumn\section*{\abstractname}%
+  \else\begin{center}{\zihao{3}\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}\end{center}\quotation
+  \fi}{\if@twocolumn\else\endquotation\newpage\fi}
+\makeatother
+
+% === 竞赛信息（电子版提交时注释掉）===
+% \tihao{A}
+% \baominghao{xxxx}
+% \schoolname{[学校名称]}
+% \membera{[成员A]}
+% \memberb{[成员B]}
+% \memberc{[成员C]}
+% \supervisor{[指导老师]}
+% \yearinput{[竞赛年份]}
+% \monthinput{[月]}
+% \dayinput{[日]}
+
+\title{药材热风烘干的耦合传热传质模型与烘干时长确定}
+
+% MH-FLOAT-TUNE 受控浮动调参（防整页空白/一页一图）
+% longtable/float 已由 cumcmthesis.cls 加载，不重复 \usepackage
+% placeins 已由模板/cls 加载，此处不重复注入（避免 Option clash）
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.72}
+\renewcommand{\dbltopfraction}{0.92}
+\renewcommand{\dblfloatpagefraction}{0.72}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\begin{document}
+
+\maketitle
+
+% === 摘要 ===
+\begin{abstract}
+
+药材热风烘干中能调的只有空气条件，合格与否却取决于内部含水率分布。本文建立\textbf{耦合传热传质的一维径向模型}，四问共用同一守恒律与边界，仅物性、区域与判据不同。
+
+针对问题一，按长径比把三维圆柱降为一维径向问题，表面施加对流换热与对流传质两个第三类边界，轴线由对称性取零通量，采用\textbf{顶点式有限体积法}离散并全隐式推进，节点正落在要求的输出位置上。传热毕奥数 $1.39$、初始传质毕奥数 $3.24$，均远离集中参数模型的适用范围，径向梯度必须保留。半小时内中心温度由 $28.0000$ 升到 $\textbf{33.5753}$~°C，热波已贯穿整个截面；同期表面含水率降到 $1.5108$~kg/kg 而中心几乎未动，两场特征时间相差三十余倍。同一离散在常物性圆柱的\textbf{解析解}上交叉校验，中心温度偏差随时间步细化降到 $2.20\times10^{-4}$~°C。
+
+针对问题二，物性改由随含水率与绝对温度变化的经验式给出，方程转为非线性，每个时间层内嵌不动点迭代。扩散系数全程跨越四个数量级，界面取调和平均时停时随网格加倍近乎减半而不收敛；改按 Kirchhoff 势定义界面通量、取\textbf{扩散系数的积分平均}后，$N=20/40/80$ 依次给出 $57.562$、$57.532$、$57.524$~h，加倍变化仅 $0.014\%$。三小时末温度已准稳态，径向温差 $0.12$~°C。
+
+针对问题三，把“各处达标”定义为对\textbf{径向最大值}的首次穿越，判据量取 $\max_r C$ 而非表面值或截面平均值，在跨越阈值的输出区间内线性插值定位，得烘干时长 $\textbf{57.5316}$~h 即 $2.40$ 天，落在题面所述二至三天之内；该时刻表面含水率 $0.0526$、截面平均 $0.1239$~kg/kg。若误用截面平均判据将提前 $21.70$~h，接近正确时长的四成；该支的截面水分总量守恒残差为 $5.5\times10^{-13}$，与机器精度同阶。
+
+针对问题四，采用以当前半径归一的\textbf{物质坐标} $s=r/R(t)$，链式法则使坐标变换项与表观对流项精确相消，方程中不出现半径导数，表面恒落在 $s=1$。所得时长 $\textbf{51.1384}$~h，比前一问提前 $11.11\%$；追加只换物性而不收缩的隔离算例，把净差拆为物性使干燥慢 $125.8\%$ 与收缩使干燥快 $60.6\%$ 两项方向相反的贡献。
+
+本文把\textbf{干物质守恒}残差用作实现诊断：$33$ 个算例的残差均不超过 $9.7\times10^{-13}$，而按实验室坐标另行实现的对照支残差高达 $30.3\%$，其停时与主模型仅差 $2.93\%$、单看数值无从判别，据此才定位到该支把边界运动重复计入；同一守恒关系还为径向仿射收缩提供了独立支持。
+
+横向对比表明建模层次直接改变结论量级：集中参数模型给出 $11.1669$~h，只有本文结果的 $19.4\%$。十三个扰动算例除改动判据的两支外全部落在二至三天内，\textbf{扩散系数}弹性接近 $-1$，表面传热系数的影响仅 $0.015\%$；而\textbf{合格标准的效应超过所有物理参数}且明显不对称——阈值放宽一成省 $20.02\%$，收紧一成却要多烘 $32.36\%$。
+
+\keywords{传热传质耦合\quad 有限体积法\quad 移动边界\quad 首次达标时刻\quad 灵敏度分析}
+\end{abstract}
+
+% === 摘要与正文之间的换页 ===
+% 注意：不要在这里加回 \tableofcontents：竞赛论文统一不出目录页。
+% abstract 环境结尾已经换页；这里不再重复 \clearpage，避免空白页边缘情况。
+
+% === 正文 ===
+% 这两个标签只供编译合规检查精确计算 CUMCM 正文页数，不显示在论文中。
+\label{mh:body-start}
+\input{sections/1_restatement}
+\input{sections/2_analysis}
+\input{sections/3_assumptions}
+\input{sections/4_symbols}
+\input{sections/5_framework}
+\input{sections/6_problem1}
+\input{sections/7_problem2}
+\input{sections/8_problem3}
+\input{sections/9_problem4}
+\input{sections/10_credibility}
+\input{sections/11_compare}
+\input{sections/12_sensitivity}
+\input{sections/13_evaluation}
+
+% === AI 使用声明 ===
+% AI 声明由 build_ai_disclosure.py 自动插入于参考文献前，见下方 Z_ai_disclosure。
+
+% === 参考文献 ===
+\bibliographystyle{gbt7714-numerical}
+% === AI 工具使用声明（自动插入）===
+\input{sections/Z_ai_disclosure}
+\bibliography{references}
+\label{mh:body-end}
+
+% === 附录 ===
+\begin{appendices}
+\input{sections/A_files}
+\input{sections/B_tables}
+\input{sections/C_code}
+\end{appendices}
+
+\end{document}

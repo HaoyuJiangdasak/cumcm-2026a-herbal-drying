@@ -1,0 +1,315 @@
+{
+ "problem": "2026A",
+ "title": "药材的烘干问题",
+ "n_subproblems": 4,
+ "generated_by": "code/main.py",
+ "C_min_all": 0.0526,
+ "C_max_all": 2.55,
+ "T_min_all": 28.0,
+ "T_max_all": 50.03867241859608,
+ "t_dry_Q3_s": 207113.77551799148,
+ "t_dry_Q3_h": 57.53160431055319,
+ "t_dry_Q4_s": 184098.16455649323,
+ "t_dry_Q4_h": 51.13837904347034,
+ "t_dry_Q3_days": 2.397150179606383,
+ "C_bar_at_t_dry_Q3": 0.12390347980971685,
+ "C_bar_at_t_dry_Q4": 0.11820036115018717,
+ "R_ratio_Q4": 0.6,
+ "mass_balance_error": 5.891365826555022e-13,
+ "mass_balance_error_lab_frame_Q4": 0.3028148446352228,
+ "grid_doubling_max_change_pct": 0.02622668638661504,
+ "mass_conservation_eps_max_all_cases": 9.675920195791953e-13,
+ "t_dry_Q4_fixed_domain_h": 129.9252000041583,
+ "frame_rel_diff_Q4": 0.029318690673906255,
+ "sensitivity_baseline_t_dry_h": 57.53160431055319,
+ "sensitivity_n_cases": 14,
+ "t_dry_M1_lumped_h": 11.166883509226054,
+ "t_dry_M2_frozen_h": 22.563646881349264,
+ "n_constraints_checked": 16,
+ "n_constraints_failed": 0,
+ "logic_probes": {
+  "bounds": [],
+  "monotonic": [
+   {
+    "more": "t",
+    "then": "max_r C",
+    "observed_sign": -1,
+    "max_rise": -1.397104654188297e-12,
+    "n_points": 600,
+    "expect_sign": -1,
+    "expect_dir": "better",
+    "basis": "无源扩散 + 表面外向通量的极大值原理（合同 monotonic 第 1 条）",
+    "source": "problem_3_results.json 的 criterion_series.C_max 全序列"
+   },
+   {
+    "more": "t",
+    "then": "volume_mean_C",
+    "observed_sign": -1,
+    "max_rise": -6.394094552275575e-05,
+    "n_points": 600,
+    "expect_sign": -1,
+    "expect_dir": "better",
+    "basis": "全局质量守恒 + 表面通量恒向外（第 2 条）",
+    "source": "problem_3_results.json 的 criterion_series.C_bar"
+   },
+   {
+    "more": "r",
+    "then": "C",
+    "observed_sign": -1,
+    "max_rise": -9.999999999998899e-05,
+    "n_points": 21,
+    "expect_sign": -1,
+    "expect_dir": "better",
+    "basis": "轴线零通量 + 表面排湿 + 均匀初值（第 3 条）",
+    "source": "problem_3_results.json 的 result_grid.C 末行沿半径"
+   },
+   {
+    "more": "t",
+    "then": "R",
+    "observed_sign": -1,
+    "max_rise": 0.0,
+    "n_points": 3069,
+    "expect_sign": -1,
+    "expect_dir": "better",
+    "basis": "附件 2 实测 + PCHIP 保形（第 4 条）；R 有平段，故趋势取首末差、非增性由 max_rise=0 单独佐证",
+    "source": "problem_4_results.json 的 result_grid.R_cm 全序列"
+   },
+   {
+    "more": "C",
+    "then": "D",
+    "observed_sign": 1,
+    "expect_sign": 1,
+    "expect_dir": "worse",
+    "n_points": 568,
+    "n_agreeing_pairs": 567,
+    "n_pairs": 567,
+    "T_span_degC": 0.09826469341373212,
+    "basis": "exp(-a/C) 的 C 在分母，故 D 随 C 增（第 7 条）。限定在 T>49.9 ℃ 的近等温平台段测量，避免升温段的 T 效应反号；平台段内 ΔC 与 ΔD 同号",
+    "source": "problem_3_results.json 的 criterion_series 的 C_max/D_center/T_center"
+   },
+   {
+    "more": "D_scale",
+    "then": "t_dry",
+    "observed_sign": -1,
+    "expect_sign": -1,
+    "expect_dir": "better",
+    "basis": "扩散越快越早达标（合同 monotonic 第 5 条）"
+   },
+   {
+    "more": "C_threshold",
+    "then": "t_dry",
+    "observed_sign": -1,
+    "expect_sign": -1,
+    "expect_dir": "better",
+    "basis": "阈值越宽越早达标（合同 monotonic 第 6 条）"
+   },
+   {
+    "more": "h_m_scale",
+    "then": "t_dry",
+    "observed_sign": -1,
+    "expect_sign": -1,
+    "expect_dir": "better",
+    "basis": "表面传质越强越早达标"
+   },
+   {
+    "more": "C_a_scale",
+    "then": "t_dry",
+    "observed_sign": 1,
+    "expect_sign": 1,
+    "expect_dir": "worse",
+    "basis": "空气越湿则驱动力越小、达标越晚"
+   },
+   {
+    "more": "shrinkage_enabled",
+    "then": "t_dry",
+    "observed_sign": -1,
+    "expect_sign": -1,
+    "expect_dir": "better",
+    "basis": "收缩缩短扩散路径，达标更早（式 eq:chain 的动边界项）",
+    "source": "problem_4_results.json 的 main 与 fixed 两分支 t_dry"
+   },
+   {
+    "more": "model_fidelity",
+    "then": "t_dry",
+    "observed_sign": 1,
+    "expect_sign": 1,
+    "expect_dir": "worse",
+    "basis": "M1 集中参数忽略内部扩散阻力，会低估时长；保真度越高时长越长",
+    "source": "model_compare_results.json 的 table（M1 11.17 h → M3 57.53 h）"
+   }
+  ],
+  "note": "bounds 留空：合同的五项界是极大值原理给出的物理界，不是由删失/封顶值反解的上下界，没有「把输入朝真值方向推一点再重算」的操作定义，臆造探针会把物理界误判成方向错。monotonic 十一条全部实算。"
+ },
+ "stages": [
+  {
+   "stage": "data_check",
+   "script": "code/data_check.py",
+   "product": "figures/data_check.json",
+   "wall_s": 3.51,
+   "size_kb": 1.9,
+   "returncode": 0,
+   "log_tail": [
+    "[冒烟] ε_mass=3.483e-16  Picard均值=3.98  峰值=4  步数=1800",
+    "  [写出] data_check.json  1.9 KB",
+    "[data_check] 全部校验通过"
+   ]
+  },
+  {
+   "stage": "problem1",
+   "script": "code/problem1.py",
+   "product": "figures/problem_1_results.json",
+   "wall_s": 2.99,
+   "size_kb": 1737.1,
+   "returncode": 0,
+   "log_tail": [
+    "[P1][P1-C3] PASS",
+    "  [写出] problem_1_results.json  1737.1 KB",
+    "[P1] 写出 figures/problem_1_results.json  1737.1 KB"
+   ]
+  },
+  {
+   "stage": "problem2",
+   "script": "code/problem2.py",
+   "product": "figures/problem_2_results.json",
+   "wall_s": 4.02,
+   "size_kb": 7691.1,
+   "returncode": 0,
+   "log_tail": [
+    "[P2][P2-C3] PASS",
+    "  [写出] problem_2_results.json  7691.1 KB",
+    "[P2] 写出 figures/problem_2_results.json  7691.1 KB"
+   ]
+  },
+  {
+   "stage": "problem3",
+   "script": "code/problem3.py",
+   "product": "figures/problem_3_results.json",
+   "wall_s": 2.58,
+   "size_kb": 1175.6,
+   "returncode": 0,
+   "log_tail": [
+    "[P3][P3-C4] PASS",
+    "  [写出] problem_3_results.json  1175.6 KB",
+    "[P3] 写出 figures/problem_3_results.json  1175.6 KB"
+   ]
+  },
+  {
+   "stage": "problem4",
+   "script": "code/problem4.py",
+   "product": "figures/problem_4_results.json",
+   "wall_s": 3.52,
+   "size_kb": 1403.3,
+   "returncode": 0,
+   "log_tail": [
+    "[P4][P4-C3] PASS",
+    "  [写出] problem_4_results.json  1403.3 KB",
+    "[P4] 写出 figures/problem_4_results.json  1403.3 KB"
+   ]
+  },
+  {
+   "stage": "verification",
+   "script": "code/verification.py",
+   "product": "figures/verification_results.json",
+   "wall_s": 2.75,
+   "size_kb": 25.9,
+   "returncode": 0,
+   "log_tail": [
+    "[VER][PA-C1] PASS",
+    "  [写出] verification_results.json  25.9 KB",
+    "[VER] 写出 figures/verification_results.json  25.9 KB"
+   ]
+  },
+  {
+   "stage": "sensitivity",
+   "script": "code/sensitivity.py",
+   "product": "figures/sensitivity_results.json",
+   "wall_s": 2.67,
+   "size_kb": 413.0,
+   "returncode": 0,
+   "log_tail": [
+    "[SENS] t_dry 全域 [46.0142,76.1486] h  最大 ε_mass=5.737e-13",
+    "[SENS][P3-C3] PASS",
+    "  [写出] sensitivity_results.json  413.0 KB"
+   ]
+  },
+  {
+   "stage": "model_compare",
+   "script": "code/model_compare.py",
+   "product": "figures/model_compare_results.json",
+   "wall_s": 2.37,
+   "size_kb": 222.6,
+   "returncode": 0,
+   "log_tail": [
+    "[MC] D 全程跨 3.60 个数量级；四个参考状态间相差 4.33e+03 倍（M2 冻结态无法自洽选择）",
+    "[MC] 择优：问题 1—3 用 M3（变物性一维），问题 4 用 M4（变物性 + 动边界）",
+    "  [写出] model_compare_results.json  222.6 KB"
+   ]
+  },
+  {
+   "stage": "export_excel",
+   "script": "code/export_excel.py",
+   "product": "result4.xlsx",
+   "wall_s": 14.15,
+   "size_kb": 223.6,
+   "returncode": 0,
+   "log_tail": [
+    "[XL] result4.xlsx  223.6 KB  写到跨阈值输出步上端 184140 s（t_dry=184098.165 s = 51.1384 h 落在其内），每 60 s 一行",
+    "[XL] 共 4 个文件、646019 个数值、23191 个域外空缺（K14），合计 3217.8 KB；四位小数（K13）逐格回读通过",
+    "  [写出] export_excel_results.json  3.4 KB"
+   ]
+  },
+  {
+   "stage": "constraint_audit",
+   "script": "code/constraint_audit.py",
+   "product": "figures/constraint_audit_results.json",
+   "wall_s": 10.58,
+   "size_kb": 37.6,
+   "returncode": 0,
+   "log_tail": [
+    "[CA] 通过标记运行期护栏：6 次探针全部被拦，嵌套层亦受护",
+    "[CA] K01—K16 共 16 条，违规 0 条",
+    "  [写出] constraint_audit_results.json  37.6 KB"
+   ]
+  }
+ ],
+ "per_problem": {
+  "1": {
+   "appendix": 2,
+   "window_s": 1800.0,
+   "out_dt_s": 1.0,
+   "deliverable": "result1.xlsx",
+   "eps_mass": 5.891365826555022e-13,
+   "task": "预热阶段（常物性附录 2）逐秒温度场与水分场"
+  },
+  "2": {
+   "appendix": 3,
+   "window_s": 10800.0,
+   "out_dt_s": 1.0,
+   "deliverable": "result2.xlsx",
+   "task": "变物性（附录 3）3 h 逐秒温度场与水分场"
+  },
+  "3": {
+   "appendix": 3,
+   "out_dt_s": 60.0,
+   "deliverable": "result3.xlsx",
+   "t_dry_h": 57.53160431055319,
+   "t_dry_days": 2.397150179606383,
+   "task": "逐点判据 max_r C < 0.15 的最早达标时刻"
+  },
+  "4": {
+   "appendix": 4,
+   "out_dt_s": 60.0,
+   "deliverable": "result4.xlsx",
+   "t_dry_h": 51.13837904347034,
+   "R_ratio": 0.6,
+   "frame": "material",
+   "task": "动边界收缩域（物质坐标）下的达标时刻与移动表面含水率"
+  }
+ },
+ "criterion": {
+  "expr": "t_dry = inf{t : max_r C(r,t) < 0.15}",
+  "threshold": 0.15,
+  "scope": "药材各处（逐点，全域最大值）"
+ },
+ "provenance": "标量与探针均从 figures/*_results.json 现算；场数据不在本文件重复存放。各阶段由 code/main.py 子进程调度，检查点保证幂等。"
+}

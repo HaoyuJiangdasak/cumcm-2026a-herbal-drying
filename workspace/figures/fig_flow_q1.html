@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:fit-content;height:fit-content;background:#fff}
+body{font-family:"Times New Roman","SimSun","Songti SC",serif;color:#000;
+  -webkit-font-smoothing:antialiased}
+.fig{width:800px;padding:26px 30px;background:#fff;
+  display:grid;grid-template-columns:1fr 88px;align-items:stretch}
+.row{grid-column:1;display:grid;grid-template-columns:repeat(6,1fr);gap:0 16px;
+  align-items:stretch;justify-items:center}
+.node{border:1px solid #000;background:#fff;padding:10px 9px;text-align:center;
+  width:100%;display:flex;align-items:center;justify-content:center}
+.t{font-size:22px;line-height:1.34;letter-spacing:.02em;white-space:nowrap}
+.term{border-radius:999px;width:auto;padding:10px 30px;font-weight:700}
+.term .t{letter-spacing:.10em}
+.given{border-style:dashed;border-width:.9px}
+.key{border-width:1.8px;font-weight:700}
+.dec{grid-column:1/span 6;display:flex;align-items:stretch;
+  justify-content:center;gap:6px}
+.dec .box{border:1px solid #000;background:#fff;padding:10px 22px;
+  text-align:center;font-weight:700}
+.chv{align-self:center;width:13px;height:13px;border-top:1px solid #000;
+  border-right:1px solid #000}
+.chL{transform:rotate(225deg)}
+.chR{transform:rotate(45deg)}
+.ar{grid-column:1;display:flex;flex-direction:column;align-items:center;
+  padding:5px 0}
+.stem{width:1px;height:14px;background:#000}
+.head{width:0;height:0;border-left:5px solid transparent;
+  border-right:5px solid transparent;border-top:8px solid #000}
+.lbl{font-size:19px;line-height:1.2;letter-spacing:.06em}
+.rail{grid-column:2;display:flex;flex-direction:column;align-items:stretch}
+.rtop{display:flex;align-items:center}
+.rhead{width:0;height:0;border-top:5px solid transparent;
+  border-bottom:5px solid transparent;border-right:8px solid #000}
+.rline{flex:1;border-top:1px dashed #000}
+.rfill{flex:1;border-right:1px dashed #000}
+.rbot{display:flex;flex-direction:column;align-items:center}
+.rbot .rline{width:100%;flex:none}
+</style>
+</head>
+<body>
+<div class="fig" data-mh-palette="mono">
+
+  <div class="row" style="grid-row:1"><div class="node term" style="grid-column:3/span 2" data-mh-node="true" data-mh-row="1" data-mh-col="1"><span class="t">开始</span></div></div>
+  <div class="ar" style="grid-row:2"><span class="stem"></span><span class="head"></span></div>
+
+  <div class="row" style="grid-row:3" data-mh-band="input">
+    <div class="node given" style="grid-column:1/span 2" data-mh-node="true" data-mh-row="2"><span class="t">附件 1 烘房条件</span></div>
+    <div class="node given" style="grid-column:3/span 2" data-mh-node="true" data-mh-row="2"><span class="t">附录 2 定常物性</span></div>
+    <div class="node" style="grid-column:5/span 2" data-mh-node="true" data-mh-row="2"><span class="t">径向控制体划分</span></div>
+  </div>
+  <div class="ar" style="grid-row:4"><span class="stem"></span><span class="head"></span></div>
+
+  <div class="row" style="grid-row:5" data-mh-band="setup">
+    <div class="node" style="grid-column:1/span 3" data-mh-node="true" data-mh-row="3"><span class="t">初始均匀温度场</span></div>
+    <div class="node" style="grid-column:4/span 3" data-mh-node="true" data-mh-row="3"><span class="t">表面对流换热边界</span></div>
+  </div>
+  <div class="ar" style="grid-row:6"><span class="stem"></span><span class="head"></span></div>
+
+  <div class="row" style="grid-row:7"><div class="node key" style="grid-column:1/span 6" data-mh-node="true" data-mh-row="4" data-mh-col="1"><span class="t">全隐式时间推进</span></div></div>
+  <div class="ar" style="grid-row:8"><span class="stem"></span><span class="head"></span></div>
+
+  <div class="row" style="grid-row:9">
+    <div class="dec" data-mh-node="true" data-mh-row="5" data-mh-col="1">
+      <span class="chv chL"></span>
+      <div class="box"><span class="t">中心温度稳定判定</span></div>
+      <span class="chv chR"></span>
+    </div>
+  </div>
+  <div class="ar" style="grid-row:10"><span class="lbl">是</span><span class="stem"></span><span class="head"></span></div>
+
+  <div class="row" style="grid-row:11"><div class="node" style="grid-column:1/span 6" data-mh-node="true" data-mh-row="6" data-mh-col="1"><span class="t">输出温度剖面与预热时长</span></div></div>
+  <div class="ar" style="grid-row:12"><span class="stem"></span><span class="head"></span></div>
+
+  <div class="row" style="grid-row:13"><div class="node term" style="grid-column:3/span 2" data-mh-node="true" data-mh-row="7" data-mh-col="1"><span class="t">结束</span></div></div>
+
+  <div class="rail" style="grid-row:6/span 4">
+    <div class="rtop"><span class="rhead"></span><span class="rline"></span></div>
+    <div class="rfill"></div>
+    <div class="rbot"><span class="lbl">否</span><span class="rline"></span></div>
+  </div>
+
+</div>
+</body>
+</html>

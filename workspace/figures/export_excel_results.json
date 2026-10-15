@@ -1,0 +1,160 @@
+{
+ "problem": "cross",
+ "capabilities": [
+  "P1-C3",
+  "P2-C3",
+  "P3-C4",
+  "P4-C3"
+ ],
+ "constraints": [
+  "K13",
+  "K14",
+  "K15"
+ ],
+ "files": {
+  "result1.xlsx": {
+   "problem": 1,
+   "path": "result1.xlsx",
+   "source": "problem_1_results.json",
+   "sheets": {
+    "温度": {
+     "n_rows": 1800,
+     "n_cols": 21,
+     "n_values": 37800,
+     "n_blanks": 0,
+     "header_first3": [
+      "时间\\到药材中心的距离",
+      "0",
+      "0.1"
+     ],
+     "header_last": "2"
+    },
+    "水分浓度": {
+     "n_rows": 1800,
+     "n_cols": 21,
+     "n_values": 37800,
+     "n_blanks": 0,
+     "header_first3": [
+      "时间\\到药材中心的距离",
+      "0",
+      "0.1"
+     ],
+     "header_last": "2"
+    }
+   },
+   "size_kb": 354.6,
+   "cross_check": {
+    "t_first_s": 1.0,
+    "t_last_s": 1800.0,
+    "out_dt_s": 1.0,
+    "n_rows": 1800,
+    "n_blanks": 0,
+    "coverage": "覆盖 1800 s 全窗，每 1 s 一行"
+   }
+  },
+  "result2.xlsx": {
+   "problem": 2,
+   "path": "result2.xlsx",
+   "source": "problem_2_results.json",
+   "sheets": {
+    "温度": {
+     "n_rows": 10800,
+     "n_cols": 21,
+     "n_values": 226800,
+     "n_blanks": 0,
+     "header_first3": [
+      "时间\\到药材中心的距离",
+      "0",
+      "0.1"
+     ],
+     "header_last": "2"
+    },
+    "水分浓度": {
+     "n_rows": 10800,
+     "n_cols": 21,
+     "n_values": 226800,
+     "n_blanks": 0,
+     "header_first3": [
+      "时间\\到药材中心的距离",
+      "0",
+      "0.1"
+     ],
+     "header_last": "2"
+    }
+   },
+   "size_kb": 2311.4,
+   "cross_check": {
+    "t_first_s": 1.0,
+    "t_last_s": 10800.0,
+    "out_dt_s": 1.0,
+    "n_rows": 10800,
+    "n_blanks": 0,
+    "coverage": "覆盖 10800 s 全窗，每 1 s 一行"
+   }
+  },
+  "result3.xlsx": {
+   "problem": 3,
+   "path": "result3.xlsx",
+   "source": "problem_3_results.json",
+   "sheets": {
+    "Sheet1": {
+     "n_rows": 3452,
+     "n_cols": 21,
+     "n_values": 72492,
+     "n_blanks": 0,
+     "header_first3": [
+      "时间\\到药材中心的距离",
+      "0",
+      "0.1"
+     ],
+     "header_last": "2"
+    }
+   },
+   "size_kb": 328.2,
+   "cross_check": {
+    "t_first_s": 60.0,
+    "t_last_s": 207120.0,
+    "out_dt_s": 60.0,
+    "n_rows": 3452,
+    "n_blanks": 0,
+    "coverage": "写到跨阈值输出步上端 207120 s（t_dry=207113.776 s = 57.5316 h 落在其内），每 60 s 一行"
+   }
+  },
+  "result4.xlsx": {
+   "problem": 4,
+   "path": "result4.xlsx",
+   "source": "problem_4_results.json",
+   "sheets": {
+    "Sheet1": {
+     "n_rows": 3069,
+     "n_cols": 22,
+     "n_values": 44327,
+     "n_blanks": 23191,
+     "header_first3": [
+      "时间\\到药材中心的距离",
+      "0",
+      "0.1"
+     ],
+     "header_last": "药材表面"
+    }
+   },
+   "size_kb": 223.6,
+   "cross_check": {
+    "t_first_s": 60.0,
+    "t_last_s": 184140.0,
+    "out_dt_s": 60.0,
+    "n_rows": 3069,
+    "n_blanks": 23191,
+    "coverage": "写到跨阈值输出步上端 184140 s（t_dry=184098.165 s = 51.1384 h 落在其内），每 60 s 一行"
+   }
+  }
+ },
+ "template_dir": "user_data",
+ "note": "数值全部取自 figures/problem_N_results.json 的 result_grid，本文件只做模板对齐、落盘与逐格回读复核，不重算物理量。",
+ "totals": {
+  "n_files": 4,
+  "n_values": 646019,
+  "n_blanks": 23191,
+  "size_kb": 3217.8
+ }
+}

@@ -1,0 +1,1466 @@
+{
+ "problem": "cross",
+ "n_constraints": 16,
+ "n_failed": 0,
+ "all_pass": 1,
+ "constraints": [
+  {
+   "id": "K01",
+   "statement": "0 ≤ C(r,t) ≤ 2.55",
+   "scope": "四问题全场逐点 + 灵敏度 14 算例 + 模型对比 M1—M3",
+   "method": "result_grid 的 C 场逐格取 min/max（问题 4 域外空缺记 NaN，不当 0）；灵敏度取每算例的中心/表面/均值/最大值；模型对比取 M2、M3 末刻剖面与 M1 的 C̄ 序列",
+   "measured": {
+    "C_min_all": 0.0026451384510774566,
+    "C_max_all": 2.55,
+    "per_problem": {
+     "P1": {
+      "C_min": 1.5108,
+      "C_max": 2.55,
+      "n_cells": 37800
+     },
+     "P2": {
+      "C_min": 1.0081,
+      "C_max": 2.55,
+      "n_cells": 226800
+     },
+     "P3": {
+      "C_min": 0.0526,
+      "C_max": 2.55,
+      "n_cells": 72492
+     },
+     "P4": {
+      "C_min": 0.0526,
+      "C_max": 2.55,
+      "n_cells": 41258
+     }
+    },
+    "n_sensitivity_cases": 14,
+    "sensitivity": {
+     "base": {
+      "C_min": 0.05263223416981333,
+      "C_max": 0.14999818742536536
+     },
+     "D_up": {
+      "C_min": 0.052896551101102085,
+      "C_max": 0.14998731171282667
+     },
+     "D_dn": {
+      "C_min": 0.05236669096634762,
+      "C_max": 0.14999239623872404
+     },
+     "hm_up": {
+      "C_min": 0.0523903971614705,
+      "C_max": 0.1499871986375336
+     },
+     "hm_dn": {
+      "C_min": 0.05292565054974556,
+      "C_max": 0.1499831030420626
+     },
+     "h_up": {
+      "C_min": 0.05263162761103001,
+      "C_max": 0.14999071286897853
+     },
+     "h_dn": {
+      "C_min": 0.05263156131657639,
+      "C_max": 0.14998989586403905
+     },
+     "Ca_up": {
+      "C_min": 0.057626598857377774,
+      "C_max": 0.1499848850770571
+     },
+     "Ca_dn": {
+      "C_min": 0.04763464454221918,
+      "C_max": 0.14999638160868237
+     },
+     "Cth_up": {
+      "C_min": 0.05403143575030092,
+      "C_max": 0.1649959469516851
+     },
+     "Cth_dn": {
+      "C_min": 0.05158650096663192,
+      "C_max": 0.13499913790529194
+     },
+     "drive_B": {
+      "C_min": 0.0026451384510774566,
+      "C_max": 0.14998609205085187
+     },
+     "freeze_T": {
+      "C_min": 0.05263205801339822,
+      "C_max": 0.14999601678123042
+     },
+     "latent": {
+      "C_min": 0.052618920718468555,
+      "C_max": 0.1499874484009228
+     }
+    },
+    "model_compare": {
+     "M2_profile_end": {
+      "C_min": 0.0861,
+      "C_max": 0.15,
+      "n_points": 21
+     },
+     "M3_profile_end": {
+      "C_min": 0.0526,
+      "C_max": 0.15,
+      "n_points": 21
+     },
+     "M1_C_bar_series": {
+      "C_min": 0.14952731295915167,
+      "C_max": 2.55,
+      "n_points": 672
+     }
+    },
+    "n_compare_rows": 4
+   },
+   "limit": [
+    0.0,
+    2.55
+   ],
+   "source": "figures/problem_{1..4}_results.json 的 result_grid.C + sensitivity_results.json 的 detail_by_case + model_compare_results.json 的剖面/序列",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K02",
+   "statement": "28 ≤ T(r,t) ≤ max_t T_a(t) + 0.5",
+   "scope": "问题 1、2 全场；问题 3、4 节点序列",
+   "method": "逐格/逐点取极值，上限由各问题实测 Ta_max_used 的最大值 +0.5 现算",
+   "measured": {
+    "T_min_all": 28.0,
+    "T_max_all": 50.03867241859608,
+    "Ta_max_used": 50.246,
+    "per_problem": {
+     "P1": {
+      "T_min": 28.0,
+      "T_max": 36.7855,
+      "tier": "result_grid.T 全分辨率场"
+     },
+     "P2": {
+      "T_min": 28.0,
+      "T_max": 49.9664,
+      "tier": "result_grid.T 全分辨率场"
+     },
+     "P3": {
+      "T_min": 28.000000043122515,
+      "T_max": 50.031908903552434,
+      "tier": "criterion_series 的中心/表面温度（600 点抽样，非全场）"
+     },
+     "P4": {
+      "T_min": 28.000000000006683,
+      "T_max": 50.03867241859608,
+      "tier": "criterion_series 的中心/表面温度（600 点抽样，非全场）"
+     }
+    }
+   },
+   "limit": [
+    28.0,
+    50.746
+   ],
+   "source": "result_grid.T（P1/P2）+ criterion_series.T_*（P3/P4）",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K03",
+   "statement": "∂C/∂r ≤ 0（等价 max_r C = C(0,t)）",
+   "scope": "四问题逐时刻径向差分 + 灵敏度/模型对比的中心-表面两点判据",
+   "method": "对 result_grid.C 沿半径作一阶差分取最大值；逐行核对中心值即行最大值；灵敏度与模型对比按 C(R)-C(0) ≤ 0 核验",
+   "measured": {
+    "max_radial_rise_all": 0.0,
+    "per_problem": {
+     "P1": {
+      "max_radial_rise": 0.0,
+      "n_rising_pairs": 0,
+      "center_equals_max_all_rows": 1
+     },
+     "P2": {
+      "max_radial_rise": 0.0,
+      "n_rising_pairs": 0,
+      "center_equals_max_all_rows": 1
+     },
+     "P3": {
+      "max_radial_rise": 0.0,
+      "n_rising_pairs": 0,
+      "center_equals_max_all_rows": 1
+     },
+     "P4": {
+      "max_radial_rise": 0.0,
+      "n_rising_pairs": 0,
+      "center_equals_max_all_rows": 1
+     }
+    },
+    "n_sensitivity_cases": 14,
+    "sensitivity": {
+     "base": {
+      "surface_minus_center": -0.09736595325555203
+     },
+     "D_up": {
+      "surface_minus_center": -0.09709076061172459
+     },
+     "D_dn": {
+      "surface_minus_center": -0.09762570527237642
+     },
+     "hm_up": {
+      "surface_minus_center": -0.09759680147606309
+     },
+     "hm_dn": {
+      "surface_minus_center": -0.09705745249231705
+     },
+     "h_up": {
+      "surface_minus_center": -0.09735908525794851
+     },
+     "h_dn": {
+      "surface_minus_center": -0.09735833454746265
+     },
+     "Ca_up": {
+      "surface_minus_center": -0.09235828621967931
+     },
+     "Ca_dn": {
+      "surface_minus_center": -0.10236173706646318
+     },
+     "Cth_up": {
+      "surface_minus_center": -0.11096451120138418
+     },
+     "Cth_dn": {
+      "surface_minus_center": -0.08341263693866002
+     },
+     "drive_B": {
+      "surface_minus_center": -0.14734095359977442
+     },
+     "freeze_T": {
+      "surface_minus_center": -0.0973639587678322
+     },
+     "latent": {
+      "surface_minus_center": -0.09736852768245424
+     }
+    },
+    "model_compare": {
+     "M2": {
+      "surface_minus_center": -0.06387626965299469
+     },
+     "M3": {
+      "surface_minus_center": -0.09739999999999999
+     },
+     "M4": {
+      "surface_minus_center": -0.09739999999999999
+     }
+    }
+   },
+   "limit": 1e-12,
+   "source": "figures/problem_{1..4}_results.json 的 result_grid.C + sensitivity/model_compare 的中心与表面末值",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K04",
+   "statement": "C̄(t) 单调不增",
+   "scope": "四问题逐时刻 + 问题 4 表面列",
+   "method": "对 C̄ 序列作一阶差分取最大值；上升量 > 1e-12 即判违规",
+   "measured": {
+    "max_rise_all": 0.0,
+    "per_problem": {
+     "P1": {
+      "C_bar_max_rise": -0.0001182241973305409,
+      "n_points": 1800,
+      "tier": "mass_series（全分辨率）",
+      "C_bar_first": 2.549797895167044,
+      "C_bar_last": 2.2931858970072785
+     },
+     "P2": {
+      "C_bar_max_rise": -7.666251977056504e-05,
+      "n_points": 10800,
+      "tier": "mass_series（全分辨率）",
+      "C_bar_first": 2.5497978945611735,
+      "C_bar_last": 1.3823834741311796
+     },
+     "P3": {
+      "C_bar_max_rise": -6.394094552275575e-05,
+      "n_points": 600,
+      "tier": "criterion_series（600 点抽样）",
+      "C_bar_first": 2.538492745524886,
+      "C_bar_last": 0.12390347980971685
+     },
+     "P4": {
+      "C_bar_max_rise": -0.00010449584088075003,
+      "n_points": 600,
+      "tier": "main.criterion_series（600 点抽样）",
+      "C_bar_first": 2.538794656534782,
+      "C_bar_last": 0.11820036115018717
+     },
+     "P4_surface_column": {
+      "max_rise": 0.0,
+      "n_points": 3069,
+      "tier": "result_grid.C_surface（全分辨率）"
+     }
+    }
+   },
+   "limit": 1e-12,
+   "source": "mass_series.C_bar（P1/P2 全分辨率）+ criterion_series.C_bar（P3/P4）",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K05",
+   "statement": "ε_mass < 1%（物质坐标）；实验室坐标按设计违反",
+   "scope": "四问题 + 问题 4 三分支 + 灵敏度 14 算例 + 模型对比 M2—M4",
+   "method": "由 m0、m_end、flux_total 现算 |(m0-m_end)-flux|/m0 并与记录值对齐；灵敏度与模型对比取各算例 ε_mass；并核对 M3/M4 与来源问题同值",
+   "measured": {
+    "worst_eps_material_frames": 2.3301622069779756e-12,
+    "eps_lab_frame": 0.3028148446352228,
+    "must_hold": {
+     "P1": {
+      "eps_mass": 5.891365826555022e-13,
+      "recomputed_from_m0_mend_flux": 5.891365826555022e-13
+     },
+     "P2": {
+      "eps_mass": 5.471004912721458e-13,
+      "recomputed_from_m0_mend_flux": 5.471004912721458e-13
+     },
+     "P3": {
+      "eps_mass": 5.468392623251752e-13,
+      "recomputed_from_m0_mend_flux": 5.468392623251752e-13
+     },
+     "P4-main": {
+      "eps_mass": 3.322832205466351e-13,
+      "recomputed_from_m0_mend_flux": 3.322832205466351e-13,
+      "frame": "material"
+     },
+     "P4-fixed": {
+      "eps_mass": 3.995061362337426e-13,
+      "recomputed_from_m0_mend_flux": 3.995061362337426e-13,
+      "frame": "material"
+     }
+    },
+    "must_violate": {
+     "P4-lab": {
+      "eps_mass": 0.3028148446352228,
+      "recomputed_from_m0_mend_flux": 0.3028148446352228,
+      "frame": "lab"
+     }
+    },
+    "worst_eps_sensitivity": 5.736587675474926e-13,
+    "n_sensitivity_cases": 14,
+    "sensitivity": {
+     "base": 5.468392623251752e-13,
+     "D_up": 5.656477465070602e-13,
+     "D_dn": 5.384799360221152e-13,
+     "hm_up": 2.7881836273331384e-13,
+     "hm_dn": 2.392857154250926e-13,
+     "h_up": 5.517155360019602e-13,
+     "h_dn": 5.632096096686677e-13,
+     "Ca_up": 5.442269728554689e-13,
+     "Ca_dn": 5.595524044110789e-13,
+     "Cth_up": 5.475358728504302e-13,
+     "Cth_dn": 5.478841781130577e-13,
+     "drive_B": 5.736587675474926e-13,
+     "freeze_T": 5.736587675474926e-13,
+     "latent": 5.201939097341714e-13
+    },
+    "worst_eps_model_compare": 2.3301622069779756e-12,
+    "model_compare": {
+     "M1": null,
+     "M2": 2.3301622069779756e-12,
+     "M3": 5.468392623251752e-13,
+     "M4": 3.322832205466351e-13
+    },
+    "model_compare_vs_source_abs_diff": {
+     "M3_vs_P3": 0.0,
+     "M4_vs_P4_main": 0.0
+    },
+    "note": "实验室坐标 ε_mass 必须 > 1%，否则第 1.2 节的推翻论证失去数值证据；M1 是 0 维模型，无径向守恒可言，其 ε_mass 必须为空"
+   },
+   "limit": 0.01,
+   "source": "各问题 diagnostics 的 m0/m_end/flux_total + sensitivity_results.json 的 detail_by_case.eps_mass + model_compare_results.json 的 table.eps_mass",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K06",
+   "statement": "D 求值时 Arrhenius 指数用绝对温度（T_K > 273）",
+   "scope": "每次调用",
+   "method": "独立按附录 3 解析式复算 D 并与 Props.D 对齐；再算漏掉 273.15 会差多少倍；并核对全场最低温换算后 > 273 K",
+   "measured": {
+    "D_from_Props": 5.641680373025664e-09,
+    "D_recomputed_here": 5.641680373025664e-09,
+    "rel_diff": 0.0,
+    "D_if_kelvin_omitted": 3.873287883928696e-63,
+    "ratio_correct_over_omitted": 1.4565610773303219e+54,
+    "sub_zero_kelvin_call_blocked": 1,
+    "T_min_celsius": 27.999999999999197,
+    "T_min_kelvin": 301.1499999999992
+   },
+   "limit": 273.0,
+   "source": "code/utils.py 的 Props.D 运行期探针 + params 的 D0_A3/DC_A3/DT_ARR_A3 解析式复算",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K07",
+   "statement": "问题 2、3 的物性模块不含附录 2、4 常数",
+   "scope": "运行期物性探针",
+   "method": "对问题 2/3 指定的附录实例化 Props 求 ρ(C→0)，与 a+b·C_FLOOR 现算值比对，并核验其与另两套附录常数相距 > 1",
+   "measured": {
+    "rho_dry_used_by_P2P3": 650.000128,
+    "appendix3_floored_reference": 650.000128,
+    "appendix3_bare_constant": 650.0,
+    "abs_err": 0.0,
+    "appendix2_reference": 820.0,
+    "appendix4_reference": 760.0,
+    "isolation_probe": {
+     "expected_floored": {
+      "2": 820.0,
+      "3": 650.000128,
+      "4": 760.00009
+     },
+     "bare_constants": {
+      "2": 820.0,
+      "3": 650.0,
+      "4": 760.0
+     },
+     "C_FLOOR": 1e-06,
+     "probed_rho_at_C0": {
+      "2": 820.0,
+      "3": 650.000128,
+      "4": 760.00009
+     },
+     "max_abs_err_vs_floored": 0.0,
+     "min_gap_between_appendices": 59.99991,
+     "assigned_appendix": {
+      "1": 2,
+      "2": 3,
+      "3": 3,
+      "4": 4
+     }
+    }
+   },
+   "limit": 650.000128,
+   "source": "code/utils.py 的 Props（按 APPENDIX_OF_PROBLEM 实例化）+ params 的 RHO3_A/RHO3_B",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K08",
+   "statement": "问题 4 的物性模块不含附录 3 常数",
+   "scope": "运行期物性探针",
+   "method": "对问题 4 指定的附录实例化 Props 求 ρ(C→0)，与 a+b·C_FLOOR 现算值比对",
+   "measured": {
+    "rho_dry_used_by_P4": 760.00009,
+    "appendix4_floored_reference": 760.00009,
+    "appendix4_bare_constant": 760.0,
+    "abs_err": 0.0,
+    "appendix3_reference": 650.0,
+    "isolation_probe": {
+     "expected_floored": {
+      "2": 820.0,
+      "3": 650.000128,
+      "4": 760.00009
+     },
+     "bare_constants": {
+      "2": 820.0,
+      "3": 650.0,
+      "4": 760.0
+     },
+     "C_FLOOR": 1e-06,
+     "probed_rho_at_C0": {
+      "2": 820.0,
+      "3": 650.000128,
+      "4": 760.00009
+     },
+     "max_abs_err_vs_floored": 0.0,
+     "min_gap_between_appendices": 59.99991,
+     "assigned_appendix": {
+      "1": 2,
+      "2": 3,
+      "3": 3,
+      "4": 4
+     }
+    }
+   },
+   "limit": 760.00009,
+   "source": "code/utils.py 的 Props（按 APPENDIX_OF_PROBLEM 实例化）+ params 的 RHO4_A/RHO4_B",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K09",
+   "statement": "dR/dt ≤ 0 全程",
+   "scope": "问题 4 的 R(t) 序列逐点差分",
+   "method": "对 result_grid.R_cm（3069 点）与 radius_profile.R_cm（600 点）分别作差分取最大值",
+   "measured": {
+    "max_rise_result_grid_cm": 0.0,
+    "max_rise_radius_profile_cm": 0.0,
+    "R_first_cm": 1.9949873268608416,
+    "R_last_cm": 1.2,
+    "n_points": 3069
+   },
+   "limit": 1e-12,
+   "source": "figures/problem_4_results.json 的 result_grid.R_cm 与 radius_profile.R_cm",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K10",
+   "statement": "t_dry < 259200 s（附件 2 覆盖内）",
+   "scope": "问题 4 结束时",
+   "method": "取问题 4 主算例的 t_dry 与附件 2 的时间跨度 ATT2_T_END_S 直接比较",
+   "measured": {
+    "t_dry_P4_s": 184098.16455649323,
+    "t_dry_P4_h": 51.13837904347034,
+    "t_dry_P3_s": 207113.77551799148,
+    "t_dry_P3_h": 57.53160431055319,
+    "attachment2_span_s": 259200.0,
+    "margin_s": 75101.83544350677
+   },
+   "limit": 259200.0,
+   "source": "figures/problem_{3,4}_results.json 的 t_dry + params 的 ATT2_T_END_S",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K11",
+   "statement": "t_dry ∈ [t_k, t_{k+1}] 且两端跨阈值",
+   "scope": "问题 3、4 + 灵敏度 14 算例 + 模型对比 M1、M2",
+   "method": "由区间两端的 max_r C（M1 为 C̄）重算线性插值，须与记录的 t_dry 在 1e-6 s 内一致；阈值扰动算例用其自身 stop_threshold 复算",
+   "measured": {
+    "threshold": 0.15,
+    "per_problem": {
+     "P3": {
+      "bracket_t_s": [
+       207060.0,
+       207120.0
+      ],
+      "bracket_Cmax": [
+       0.1500156594781288,
+       0.14999818742536536
+      ],
+      "t_dry_s": 207113.77551799148,
+      "interp_recomputed_s": 207113.77551799148,
+      "interp_abs_diff_s": 0.0,
+      "bracket_width_s": 60.0,
+      "out_dt_s": 60.0
+     },
+     "P4": {
+      "bracket_t_s": [
+       184080.0,
+       184140.0
+      ],
+      "bracket_Cmax": [
+       0.15000932024623004,
+       0.14997853420562338
+      ],
+      "t_dry_s": 184098.16455649323,
+      "interp_recomputed_s": 184098.16455649323,
+      "interp_abs_diff_s": 0.0,
+      "bracket_width_s": 60.0,
+      "out_dt_s": 60.0
+     }
+    },
+    "n_sensitivity_cases": 14,
+    "worst_interp_abs_diff_s": 0.0,
+    "sensitivity": {
+     "base": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       207060.0,
+       207120.0
+      ],
+      "interp_recomputed_s": 207113.77551799148,
+      "interp_abs_diff_s": 0.0
+     },
+     "D_up": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       190500.0,
+       190560.0
+      ],
+      "interp_recomputed_s": 190520.37286250954,
+      "interp_abs_diff_s": 0.0
+     },
+     "D_dn": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       227460.0,
+       227520.0
+      ],
+      "interp_recomputed_s": 227490.98319864285,
+      "interp_abs_diff_s": 0.0
+     },
+     "hm_up": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       205020.0,
+       205080.0
+      ],
+      "interp_recomputed_s": 205036.02628940745,
+      "interp_abs_diff_s": 0.0
+     },
+     "hm_dn": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       209760.0,
+       209820.0
+      ],
+      "interp_recomputed_s": 209761.94333712227,
+      "interp_abs_diff_s": 0.0
+     },
+     "h_up": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       207060.0,
+       207120.0
+      ],
+      "interp_recomputed_s": 207088.09992159402,
+      "interp_abs_diff_s": 0.0
+     },
+     "h_dn": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       207120.0,
+       207180.0
+      ],
+      "interp_recomputed_s": 207145.29271811902,
+      "interp_abs_diff_s": 0.0
+     },
+     "Ca_up": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       207540.0,
+       207600.0
+      ],
+      "interp_recomputed_s": 207548.0286671029,
+      "interp_abs_diff_s": 0.0
+     },
+     "Ca_dn": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       206700.0,
+       206760.0
+      ],
+      "interp_recomputed_s": 206747.57852277276,
+      "interp_abs_diff_s": 0.0
+     },
+     "Cth_up": {
+      "threshold": 0.165,
+      "bracket_t_s": [
+       165600.0,
+       165660.0
+      ],
+      "interp_recomputed_s": 165651.02669310928,
+      "interp_abs_diff_s": 0.0
+     },
+     "Cth_dn": {
+      "threshold": 0.135,
+      "bracket_t_s": [
+       274080.0,
+       274140.0
+      ],
+      "interp_recomputed_s": 274135.02588265296,
+      "interp_abs_diff_s": 0.0
+     },
+     "drive_B": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       204600.0,
+       204660.0
+      ],
+      "interp_recomputed_s": 204612.25146059986,
+      "interp_abs_diff_s": 0.0
+     },
+     "freeze_T": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       206760.0,
+       206820.0
+      ],
+      "interp_recomputed_s": 206806.32046459694,
+      "interp_abs_diff_s": 0.0
+     },
+     "latent": {
+      "threshold": 0.15,
+      "bracket_t_s": [
+       226560.0,
+       226620.0
+      ],
+      "interp_recomputed_s": 226576.68081647836,
+      "interp_abs_diff_s": 0.0
+     }
+    },
+    "sensitivity_violations": [],
+    "model_compare": {
+     "M1": {
+      "bracket_t_s": [
+       40200.0,
+       40260.0
+      ],
+      "bracket_C": [
+       0.1500062309886755,
+       0.14952731295915167
+      ],
+      "interp_recomputed_s": 40200.78063321379,
+      "interp_abs_diff_s": 0.0
+     },
+     "M2": {
+      "bracket_t_s": [
+       81180.0,
+       81240.0
+      ],
+      "bracket_C": [
+       0.15021545626477145,
+       0.14995232378385598
+      ],
+      "interp_recomputed_s": 81229.12877285735,
+      "interp_abs_diff_s": 0.0
+     }
+    },
+    "model_compare_violations": []
+   },
+   "limit": 0.15,
+   "source": "figures/problem_{3,4}_results.json 的 t_dry.bracket_* + sensitivity_results.json 的 detail_by_case.bracket + model_compare_results.json 的 lumped/frozen bracket（全部自行重算插值）",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K12",
+   "statement": "网格加倍关键输出变化 < 0.1%",
+   "scope": "收敛性算例",
+   "method": "取 N=40 与 N=80 的 key_output 现算相对变化，不读收敛结论字段",
+   "measured": {
+    "worst_rel_change_pct": 0.02622668638661504,
+    "per_case": {
+     "problem1": {
+      "key_output": "C_surface",
+      "N_base": 40,
+      "N_fine": 80,
+      "value_base": 1.5107710688489842,
+      "value_fine": 1.5103748436587374,
+      "rel_change_pct": 0.02622668638661504
+     },
+     "problem3": {
+      "key_output": "t_dry_h",
+      "N_base": 40,
+      "N_fine": 80,
+      "value_base": 57.53160431055319,
+      "value_fine": 57.52370211383885,
+      "rel_change_pct": 0.013735401279068669
+     },
+     "problem4": {
+      "key_output": "t_dry_h",
+      "N_base": 40,
+      "N_fine": 80,
+      "value_base": 51.13837904347034,
+      "value_fine": 51.1312021460574,
+      "rel_change_pct": 0.014034268483244385
+     }
+    }
+   },
+   "limit": 0.1,
+   "source": "figures/verification_results.json 的 grid_convergence.cases（原始逐 N 值）",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K13",
+   "statement": "result1—4 全部数值四位小数、无空缺（问题 4 域外列除外）",
+   "scope": "文件校验",
+   "method": "openpyxl 逐格回读交付件，现算 |v - round(v,4)| 的最大值与非问题 4 文件的空缺数",
+   "measured": {
+    "n_values_scanned": 646019,
+    "worst_rounding_err": 0.0,
+    "n_cells_not_4dp": 0,
+    "n_blanks_outside_P4": 0,
+    "per_file": {
+     "result1.xlsx": {
+      "温度": {
+       "n_rows": 1800,
+       "n_radii_cols": 21,
+       "has_surface_col": 0,
+       "surface_header": null,
+       "n_values": 37800,
+       "n_blanks": 0,
+       "n_bad_rounding": 0,
+       "n_blank_rule_violations": 0,
+       "worst_rounding_err": 0.0
+      },
+      "水分浓度": {
+       "n_rows": 1800,
+       "n_radii_cols": 21,
+       "has_surface_col": 0,
+       "surface_header": null,
+       "n_values": 37800,
+       "n_blanks": 0,
+       "n_bad_rounding": 0,
+       "n_blank_rule_violations": 0,
+       "worst_rounding_err": 0.0
+      }
+     },
+     "result2.xlsx": {
+      "温度": {
+       "n_rows": 10800,
+       "n_radii_cols": 21,
+       "has_surface_col": 0,
+       "surface_header": null,
+       "n_values": 226800,
+       "n_blanks": 0,
+       "n_bad_rounding": 0,
+       "n_blank_rule_violations": 0,
+       "worst_rounding_err": 0.0
+      },
+      "水分浓度": {
+       "n_rows": 10800,
+       "n_radii_cols": 21,
+       "has_surface_col": 0,
+       "surface_header": null,
+       "n_values": 226800,
+       "n_blanks": 0,
+       "n_bad_rounding": 0,
+       "n_blank_rule_violations": 0,
+       "worst_rounding_err": 0.0
+      }
+     },
+     "result3.xlsx": {
+      "Sheet1": {
+       "n_rows": 3452,
+       "n_radii_cols": 21,
+       "has_surface_col": 0,
+       "surface_header": null,
+       "n_values": 72492,
+       "n_blanks": 0,
+       "n_bad_rounding": 0,
+       "n_blank_rule_violations": 0,
+       "worst_rounding_err": 0.0
+      }
+     },
+     "result4.xlsx": {
+      "Sheet1": {
+       "n_rows": 3069,
+       "n_radii_cols": 21,
+       "has_surface_col": 1,
+       "surface_header": "药材表面",
+       "n_values": 44327,
+       "n_blanks": 23191,
+       "n_bad_rounding": 0,
+       "n_blank_rule_violations": 0,
+       "worst_rounding_err": 0.0
+      }
+     }
+    }
+   },
+   "limit": 1e-12,
+   "source": "工作区根目录的 result1—4.xlsx（逐格扫描）",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K14",
+   "statement": "result4 中 r_j > R(t) 的单元为空，不填 0",
+   "scope": "文件校验",
+   "method": "以 result_grid.R_cm 为准逐格判定域内外，与 xlsx 的空缺位置做双向核对",
+   "measured": {
+    "n_blanks_in_xlsx": 23191,
+    "n_blanks_declared_json": 23191,
+    "n_rule_violations": 0,
+    "n_values_in_xlsx": 44327,
+    "surface_header": "药材表面"
+   },
+   "limit": 0,
+   "source": "result4.xlsx（逐格扫描）+ figures/problem_4_results.json 的 result_grid.R_cm",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K15",
+   "statement": "论文表 6 末列取 s=1 节点值",
+   "scope": "表格校验",
+   "method": "把表 6 末列与 result_grid.C_surface 按时刻对齐逐行作差；末行与 t_dry 处剖面比对",
+   "measured": {
+    "n_rows_checked": 9,
+    "worst_abs_diff": 0.0,
+    "t_dry_row_abs_diff": 0.0,
+    "xlsx_surface_header": "药材表面",
+    "json_surface_column": "药材表面（跟随移动边界）",
+    "rule": "末列取 s=1 物质节点原值，不做空间插值（约束 K15）"
+   },
+   "limit": 1e-12,
+   "source": "figures/problem_4_results.json 的 table6_C 与 result_grid.C_surface + result4.xlsx 表头",
+   "verdict": "PASS",
+   "ok": 1
+  },
+  {
+   "id": "K16",
+   "statement": "C_a 与 C 在代码中为独立命名对象",
+   "scope": "源码扫描",
+   "method": "扫 code/*.py，禁止出现把空气侧含水率直接赋给材料场变量的语句",
+   "measured": {
+    "n_files_referencing_both": 12,
+    "violations": [],
+    "per_file": {
+     "constraint_audit.py": {
+      "n_ambient_refs": 5,
+      "n_material_refs": 7
+     },
+     "data_check.py": {
+      "n_ambient_refs": 4,
+      "n_material_refs": 1
+     },
+     "gen_params.py": {
+      "n_ambient_refs": 1,
+      "n_material_refs": 0
+     },
+     "main.py": {
+      "n_ambient_refs": 1,
+      "n_material_refs": 2
+     },
+     "model_compare.py": {
+      "n_ambient_refs": 6,
+      "n_material_refs": 19
+     },
+     "problem1.py": {
+      "n_ambient_refs": 13,
+      "n_material_refs": 6
+     },
+     "problem2.py": {
+      "n_ambient_refs": 7,
+      "n_material_refs": 9
+     },
+     "problem3.py": {
+      "n_ambient_refs": 3,
+      "n_material_refs": 10
+     },
+     "problem4.py": {
+      "n_ambient_refs": 0,
+      "n_material_refs": 9
+     },
+     "sensitivity.py": {
+      "n_ambient_refs": 11,
+      "n_material_refs": 7
+     },
+     "utils.py": {
+      "n_ambient_refs": 12,
+      "n_material_refs": 3
+     },
+     "verification.py": {
+      "n_ambient_refs": 10,
+      "n_material_refs": 8
+     }
+    }
+   },
+   "limit": 0,
+   "source": "code/*.py 源码扫描（已剔除注释行）",
+   "verdict": "PASS",
+   "ok": 1
+  }
+ ],
+ "baseline_discovery": {
+  "keyword": "基准|baseline|参考态|对照|control|主模型|reference_model",
+  "n_files_scanned": 9,
+  "self_product_excluded": "constraint_audit_results.json",
+  "per_file": {
+   "all_results.json": {
+    "n_baseline_mentions": 1,
+    "mentions": [
+     {
+      "where": ".sensitivity_baseline_t_dry_h",
+      "kind": "key",
+      "value": 57.53160431055319
+     }
+    ],
+    "entities": [
+     "all_results.json"
+    ],
+    "covered_entities": [
+     "all_results.json"
+    ],
+    "audited": 1
+   },
+   "export_excel_results.json": {
+    "n_baseline_mentions": 0,
+    "mentions": [],
+    "entities": [
+     "export_excel_results.json"
+    ],
+    "covered_entities": [],
+    "audited": null
+   },
+   "model_compare_results.json": {
+    "n_baseline_mentions": 3,
+    "mentions": [
+     {
+      "where": ".reference_model",
+      "kind": "key",
+      "value": "M3"
+     },
+     {
+      "where": ".table[].name",
+      "kind": "value",
+      "value": "变物性一维（问题 3 主模型）"
+     },
+     {
+      "where": ".table[].name",
+      "kind": "value",
+      "value": "变物性 + 动边界（问题 4 主模型）"
+     }
+    ],
+    "entities": [
+     "model_compare_results.json"
+    ],
+    "covered_entities": [
+     "model_compare_results.json"
+    ],
+    "audited": 1
+   },
+   "problem_1_results.json": {
+    "n_baseline_mentions": 0,
+    "mentions": [],
+    "entities": [
+     "problem_1_results.json"
+    ],
+    "covered_entities": [
+     "problem_1_results.json"
+    ],
+    "audited": null
+   },
+   "problem_2_results.json": {
+    "n_baseline_mentions": 0,
+    "mentions": [],
+    "entities": [
+     "problem_2_results.json"
+    ],
+    "covered_entities": [
+     "problem_2_results.json"
+    ],
+    "audited": null
+   },
+   "problem_3_results.json": {
+    "n_baseline_mentions": 0,
+    "mentions": [],
+    "entities": [
+     "problem_3_results.json"
+    ],
+    "covered_entities": [
+     "problem_3_results.json"
+    ],
+    "audited": null
+   },
+   "problem_4_results.json": {
+    "n_baseline_mentions": 0,
+    "mentions": [],
+    "entities": [
+     "problem_4_results.json::main",
+     "problem_4_results.json::lab",
+     "problem_4_results.json::fixed"
+    ],
+    "covered_entities": [
+     "problem_4_results.json::main",
+     "problem_4_results.json::lab",
+     "problem_4_results.json::fixed"
+    ],
+    "audited": null
+   },
+   "sensitivity_results.json": {
+    "n_baseline_mentions": 6,
+    "mentions": [
+     {
+      "where": ".baseline_t_dry_h",
+      "kind": "key",
+      "value": 57.53160431055319
+     },
+     {
+      "where": ".baseline_t_dry_h_r4",
+      "kind": "key",
+      "value": 57.5316
+     },
+     {
+      "where": ".baseline_case_id",
+      "kind": "key",
+      "value": "base"
+     },
+     {
+      "where": ".table[].label",
+      "kind": "value",
+      "value": "基准"
+     },
+     {
+      "where": ".robustness.note",
+      "kind": "value",
+      "value": "阈值扰动算例改的是判据本身，落在 S9 区间外不代表主模型失效"
+     },
+     {
+      "where": ".detail_by_case.base.label",
+      "kind": "value",
+      "value": "基准"
+     }
+    ],
+    "entities": [
+     "sensitivity_results.json"
+    ],
+    "covered_entities": [
+     "sensitivity_results.json"
+    ],
+    "audited": 1
+   },
+   "verification_results.json": {
+    "n_baseline_mentions": 0,
+    "mentions": [],
+    "entities": [
+     "verification_results.json"
+    ],
+    "covered_entities": [
+     "verification_results.json"
+    ],
+    "audited": null
+   }
+  },
+  "uncovered_files": [],
+  "touched_entities": [
+   "all_results.json",
+   "model_compare_results.json",
+   "problem_1_results.json",
+   "problem_2_results.json",
+   "problem_3_results.json",
+   "problem_4_results.json",
+   "problem_4_results.json::fixed",
+   "problem_4_results.json::lab",
+   "problem_4_results.json::main",
+   "result1.xlsx",
+   "result2.xlsx",
+   "result3.xlsx",
+   "result4.xlsx",
+   "sensitivity_results.json",
+   "verification_results.json"
+  ],
+  "ok": 1
+ },
+ "flag_guard": {
+  "mechanism": "load() 以 object_pairs_hook 把每层字典包成 NoFlags，__getitem__/get 命中标记字段即抛 AssertionError",
+  "guarded_keys": [
+   "all_pass",
+   "capability_verdict",
+   "ok",
+   "passed",
+   "status",
+   "verdict"
+  ],
+  "n_probes": 6,
+  "probes": [
+   {
+    "file": "problem_1_results.json",
+    "key": "capability_verdict",
+    "blocked": 1
+   },
+   {
+    "file": "problem_2_results.json",
+    "key": "capability_verdict",
+    "blocked": 1
+   },
+   {
+    "file": "problem_3_results.json",
+    "key": "capability_verdict",
+    "blocked": 1
+   },
+   {
+    "file": "problem_4_results.json",
+    "key": "capability_verdict",
+    "blocked": 1
+   },
+   {
+    "file": "sensitivity_results.json",
+    "key": "capability_verdict",
+    "blocked": 1
+   },
+   {
+    "file": "verification_results.json",
+    "key": "capability_verdict",
+    "blocked": 1
+   }
+  ],
+  "nested_level_guarded": 1,
+  "n_guard_hits_this_run": 7,
+  "ok": 1,
+  "note": "K01—K16 的判定全部由本文件现算，产物里的 PASS 字段读不到，也没有被读"
+ },
+ "summary_recheck": {
+  "file": "all_results.json",
+  "n_scalars_rechecked": 23,
+  "n_unregistered": 0,
+  "unregistered": [],
+  "missing_from_summary": [],
+  "scalar_checks": {
+   "C_min_all": {
+    "want": 0.0526,
+    "got": 0.0526,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "C_max_all": {
+    "want": 2.55,
+    "got": 2.55,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "T_min_all": {
+    "want": 28.0,
+    "got": 28.0,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "T_max_all": {
+    "want": 50.03867241859608,
+    "got": 50.03867241859608,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "t_dry_Q3_s": {
+    "want": 207113.77551799148,
+    "got": 207113.77551799148,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "t_dry_Q3_h": {
+    "want": 57.53160431055319,
+    "got": 57.53160431055319,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "t_dry_Q3_days": {
+    "want": 2.397150179606383,
+    "got": 2.397150179606383,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "t_dry_Q4_s": {
+    "want": 184098.16455649323,
+    "got": 184098.16455649323,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "t_dry_Q4_h": {
+    "want": 51.13837904347034,
+    "got": 51.13837904347034,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "C_bar_at_t_dry_Q3": {
+    "want": 0.12390347980971685,
+    "got": 0.12390347980971685,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "C_bar_at_t_dry_Q4": {
+    "want": 0.11820036115018717,
+    "got": 0.11820036115018717,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "R_ratio_Q4": {
+    "want": 0.6,
+    "got": 0.6,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "mass_balance_error": {
+    "want": 5.891365826555022e-13,
+    "got": 5.891365826555022e-13,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "mass_balance_error_lab_frame_Q4": {
+    "want": 0.3028148446352228,
+    "got": 0.3028148446352228,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "grid_doubling_max_change_pct": {
+    "want": 0.02622668638661504,
+    "got": 0.02622668638661504,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "mass_conservation_eps_max_all_cases": {
+    "want": 9.675920195791953e-13,
+    "got": 9.675920195791953e-13,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "t_dry_Q4_fixed_domain_h": {
+    "want": 129.9252000041583,
+    "got": 129.9252000041583,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "frame_rel_diff_Q4": {
+    "want": 0.029318690673906255,
+    "got": 0.029318690673906255,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "sensitivity_baseline_t_dry_h": {
+    "want": 57.53160431055319,
+    "got": 57.53160431055319,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "t_dry_M1_lumped_h": {
+    "want": 11.166883509226054,
+    "got": 11.166883509226054,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "t_dry_M2_frozen_h": {
+    "want": 22.563646881349264,
+    "got": 22.563646881349264,
+    "abs_diff": 0.0,
+    "rel_diff": 0.0,
+    "ok": 1
+   },
+   "n_subproblems": {
+    "want": 4,
+    "got": 4,
+    "abs_diff": null,
+    "rel_diff": null,
+    "ok": 1
+   },
+   "sensitivity_n_cases": {
+    "want": 14,
+    "got": 14,
+    "abs_diff": null,
+    "rel_diff": null,
+    "ok": 1
+   }
+  },
+  "audit_sourced_keys": [
+   "n_constraints_checked",
+   "n_constraints_failed"
+  ],
+  "audit_sourced_note": "n_constraints_checked/n_constraints_failed 出自本次审计自身，在此复算属循环论证；main.py 审计前那一遍汇总刻意不写这两个键，若已写（对终版文件单独跑审计）则与本次计数逐一核对",
+  "n_probes": 11,
+  "n_probe_rules": 11,
+  "n_probes_mismatch": 0,
+  "probes": [
+   {
+    "more": "t",
+    "then": "max_r C",
+    "declared_sign": -1,
+    "redone_sign": -1,
+    "expect_sign": -1,
+    "agrees_with_expect": 1,
+    "ok": 1
+   },
+   {
+    "more": "t",
+    "then": "volume_mean_C",
+    "declared_sign": -1,
+    "redone_sign": -1,
+    "expect_sign": -1,
+    "agrees_with_expect": 1,
+    "ok": 1
+   },
+   {
+    "more": "r",
+    "then": "C",
+    "declared_sign": -1,
+    "redone_sign": -1,
+    "expect_sign": -1,
+    "agrees_with_expect": 1,
+    "ok": 1
+   },
+   {
+    "more": "t",
+    "then": "R",
+    "declared_sign": -1,
+    "redone_sign": -1,
+    "expect_sign": -1,
+    "agrees_with_expect": 1,
+    "ok": 1
+   },
+   {
+    "more": "C",
+    "then": "D",
+    "declared_sign": 1,
+    "redone_sign": 1,
+    "expect_sign": 1,
+    "agrees_with_expect": 1,
+    "ok": 1
+   },
+   {
+    "more": "D_scale",
+    "then": "t_dry",
+    "declared_sign": -1,
+    "redone_sign": -1,
+    "expect_sign": -1,
+    "agrees_with_expect": 1,
+    "ok": 1
+   },
+   {
+    "more": "C_threshold",
+    "then": "t_dry",
+    "declared_sign": -1,
+    "redone_sign": -1,
+    "expect_sign": -1,
+    "agrees_with_expect": 1,
+    "ok": 1
+   },
+   {
+    "more": "h_m_scale",
+    "then": "t_dry",
+    "declared_sign": -1,
+    "redone_sign": -1,
+    "expect_sign": -1,
+    "agrees_with_expect": 1,
+    "ok": 1
+   },
+   {
+    "more": "C_a_scale",
+    "then": "t_dry",
+    "declared_sign": 1,
+    "redone_sign": 1,
+    "expect_sign": 1,
+    "agrees_with_expect": 1,
+    "ok": 1
+   },
+   {
+    "more": "shrinkage_enabled",
+    "then": "t_dry",
+    "declared_sign": -1,
+    "redone_sign": -1,
+    "expect_sign": -1,
+    "agrees_with_expect": 1,
+    "ok": 1
+   },
+   {
+    "more": "model_fidelity",
+    "then": "t_dry",
+    "declared_sign": 1,
+    "redone_sign": 1,
+    "expect_sign": 1,
+    "agrees_with_expect": 1,
+    "ok": 1
+   }
+  ],
+  "n_bounds_probes": 0,
+  "eps_occurrences_walked": 28,
+  "tol_rel": 1e-12,
+  "ok": 1,
+  "source": "figures/problem_1—4/verification/sensitivity/model_compare_results.json 的原始块（刻意走与 main.py 不同的取值路径）"
+ },
+ "provenance": "每条约束由本文件从 result1—4.xlsx、result_grid、原始诊断标量现算；产物中的 PASS/verdict 字段被运行期护栏挡住，读不到也没被读。"
+}

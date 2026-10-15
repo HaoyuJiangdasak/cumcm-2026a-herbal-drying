@@ -1,0 +1,40 @@
+\section{符号说明}
+
+表~\ref{tab:symbols} 收录全文反复使用、并直接进入控制方程或边界条件的核心记号，其余临时下标与一次性派生量在首次出现处就地说明。
+
+% longtable 自己按 \LTleft/\LTright 居中，不能再套 center：center 是 list 环境，
+% 跨页拆分时其无限收缩胶会触发 "Infinite glue shrinkage found in box being split"。
+\begin{longtable}{cll}
+\caption{核心符号说明}\label{tab:symbols}\\
+\toprule
+符号 & 含义 & 单位 \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{续表~\thetable\quad 核心符号说明}\\
+\toprule
+符号 & 含义 & 单位 \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+$r$ & 径向坐标，自药材中心量起 & m \\
+$t$ & 时间 & s \\
+$R_0$ & 药材初始半径 & m \\
+$R(t)$ & 问题四中随时间收缩的当前半径 & m \\
+$s$ & 物质径向坐标，$s=r/R(t)$ & --- \\
+$T(r,t)$ & 药材温度 & °C \\
+$T_{\rm K}$ & 药材绝对温度，$T_{\rm K}=T+273.15$ & K \\
+$C(r,t)$ & 药材干基含水率 & kg/kg \\
+$T_a(t)$ & 烘房空气温度 & °C \\
+$C_a(t)$ & 烘房空气水分浓度 & kg/kg \\
+$\rho(C)$ & 药材湿基密度 & kg/m$^3$ \\
+$\rho_{\rm d}$ & 干物质密度，$\rho_{\rm d}=\rho/(1+C)$ & kg/m$^3$ \\
+$c_p(C)$ & 药材比热容 & J/(kg$\cdot$K) \\
+$\lambda(C)$ & 药材热传导系数 & W/(m$\cdot$K) \\
+$D(C,T)$ & 水分浓度扩散系数 & m$^2$/s \\
+$h$ & 对流换热系数 & W/(m$^2\cdot$K) \\
+$h_m$ & 对流传质系数 & m/s \\
+$C_{\rm th}$ & 烘干合格的含水率阈值 & kg/kg \\
+$t_{\rm dry}$ & 烘干所需时间 & h \\
+${\rm Bi}_h,\ {\rm Bi}_m$ & 传热与传质毕奥数，$hR/\lambda$ 与 $h_mR/D$ & --- \\
+\end{longtable}

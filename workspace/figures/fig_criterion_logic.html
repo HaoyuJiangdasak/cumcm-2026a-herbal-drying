@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:fit-content;height:fit-content;background:#fff}
+body{font-family:"Times New Roman","SimSun","Songti SC",serif;color:#000;
+  -webkit-font-smoothing:antialiased}
+.fig{width:800px;padding:26px 30px;background:#fff;display:flex;
+  flex-direction:column;align-items:stretch}
+.row{display:grid;grid-template-columns:repeat(6,1fr);gap:0 16px;
+  align-items:stretch;justify-items:center}
+.node{border:1px solid #000;background:#fff;padding:10px 9px;text-align:center;
+  width:100%;display:flex;align-items:center;justify-content:center}
+.t{font-size:22px;line-height:1.34;letter-spacing:.02em;white-space:nowrap}
+.root{font-weight:700}
+.alt{border-style:dashed;border-width:.9px}
+.alt .t{letter-spacing:.05em}
+.key{border-width:1.8px;font-weight:700}
+.ar{display:flex;flex-direction:column;align-items:center;padding:5px 0}
+.stem{width:1px;height:14px;background:#000}
+.head{width:0;height:0;border-left:5px solid transparent;
+  border-right:5px solid transparent;border-top:8px solid #000}
+.bus{width:100%;border-top:1px solid #000;margin-top:11px}
+.fan{display:grid;grid-template-columns:repeat(6,1fr);gap:0 16px}
+.axis{display:flex;align-items:center;margin-top:16px}
+.axis .ln{flex:1;border-top:1px solid #000}
+.axis .hd{width:0;height:0;border-top:5px solid transparent;
+  border-bottom:5px solid transparent;border-left:8px solid #000}
+.tick{display:flex;flex-direction:column;align-items:center}
+.tk{width:1px;height:9px;background:#000}
+.lbl{font-size:19px;line-height:1.25;letter-spacing:.05em;padding-top:3px;
+  white-space:nowrap}
+.axname{font-size:19px;line-height:1.25;letter-spacing:.05em;
+  align-self:flex-end;padding-top:2px}
+</style>
+</head>
+<body>
+<div class="fig" data-mh-palette="mono">
+
+  <div class="row"><div class="node root" style="grid-column:1/span 6" data-mh-node="true" data-mh-row="1" data-mh-col="2"><span class="t">停时判据候选</span></div></div>
+
+  <div class="bus"></div>
+  <div class="fan">
+    <div class="ar" style="grid-column:1/span 2"><span class="stem"></span><span class="head"></span></div>
+    <div class="ar" style="grid-column:3/span 2"><span class="stem"></span><span class="head"></span></div>
+    <div class="ar" style="grid-column:5/span 2"><span class="stem"></span><span class="head"></span></div>
+  </div>
+
+  <div class="row" data-mh-band="candidate">
+    <div class="node alt" style="grid-column:1/span 2" data-mh-node="true" data-mh-row="2" data-mh-col="1"><span class="t">表面含水率</span></div>
+    <div class="node alt" style="grid-column:3/span 2" data-mh-node="true" data-mh-row="2" data-mh-col="2"><span class="t">截面平均含水率</span></div>
+    <div class="node key" style="grid-column:5/span 2" data-mh-node="true" data-mh-focus="true" data-mh-row="2" data-mh-col="3"><span class="t">逐点最大含水率</span></div>
+  </div>
+
+  <div class="fan">
+    <div class="ar" style="grid-column:1/span 2"><span class="stem"></span><span class="head"></span></div>
+    <div class="ar" style="grid-column:3/span 2"><span class="stem"></span><span class="head"></span></div>
+    <div class="ar" style="grid-column:5/span 2"><span class="stem"></span><span class="head"></span></div>
+  </div>
+
+  <div class="row" data-mh-band="verdict">
+    <div class="node alt" style="grid-column:1/span 2" data-mh-node="true" data-mh-row="3" data-mh-col="1"><span class="t">偏离内部状态</span></div>
+    <div class="node alt" style="grid-column:3/span 2" data-mh-node="true" data-mh-row="3" data-mh-col="2"><span class="t">低估达标时间</span></div>
+    <div class="node key" style="grid-column:5/span 2" data-mh-node="true" data-mh-row="3" data-mh-col="3"><span class="t">全域达标可靠</span></div>
+  </div>
+
+  <div class="axis"><span class="ln"></span><span class="hd"></span></div>
+  <div class="fan">
+    <div class="tick" style="grid-column:1/span 2"><span class="tk"></span><span class="lbl" data-mh-col="1">最早触发</span></div>
+    <div class="tick" style="grid-column:3/span 2"><span class="tk"></span><span class="lbl" data-mh-col="2">居中触发</span></div>
+    <div class="tick" style="grid-column:5/span 2"><span class="tk"></span><span class="lbl" data-mh-col="3">最晚触发</span></div>
+  </div>
+  <div class="axname">达标时刻先后</div>
+
+  <div class="bus"></div>
+  <div class="ar"><span class="stem"></span><span class="head"></span></div>
+
+  <div class="row"><div class="node key" style="grid-column:1/span 6" data-mh-node="true" data-mh-row="4" data-mh-col="2"><span class="t">采用逐点最大判据</span></div></div>
+
+</div>
+</body>
+</html>
